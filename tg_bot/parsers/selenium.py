@@ -7,8 +7,6 @@ def run_selenium(article):
     global driver
     def login():
         global driver
-        display = Display(visible=0, size=(1024, 768))
-        display.start()
         driver = uc.Chrome()
         driver.get(f'https://ozon.ru/context/detail/id/{article}/')
         while f"https://ozon.ru/context/detail/id/{article}/" in driver.current_url:
@@ -18,6 +16,5 @@ def run_selenium(article):
         curr = previous_sibling.find_element(By.CSS_SELECTOR, "*")
         txt = curr.text
         driver.quit()
-        display.stop()
         return txt
     return login()
