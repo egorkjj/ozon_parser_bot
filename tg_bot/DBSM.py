@@ -63,15 +63,4 @@ def change_price(price_card, price, art, user_id):
     session.close()
 
 
-
-def de():
-    Session = sessionmaker()
-    session = Session(bind=engine) 
-    res = session.query(Articles).all()
-    for i in res:
-        i.card_price = 123
-        session.commit()
-    session.close()
-
 Base.metadata.create_all(engine)
-de()

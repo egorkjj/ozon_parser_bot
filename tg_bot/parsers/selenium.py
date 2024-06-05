@@ -1,5 +1,6 @@
 import undetected_chromedriver as uc
 from undetected_chromedriver import By
+
 driver = None
 
 def run_selenium(article):
@@ -13,7 +14,7 @@ def run_selenium(article):
         el = driver.find_element(By.XPATH, "//*[contains(text(), 'c Ozon Картой')]")
         previous_sibling = el.find_element(By.XPATH, "preceding-sibling::*[1]")
         curr = previous_sibling.find_element(By.CSS_SELECTOR, "*")
-        txt =curr.text
+        txt = curr.text
         driver.quit()
         return txt
     return login()

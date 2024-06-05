@@ -26,6 +26,6 @@ def ozon_parse(article):
         "price": int(price_data["item"]["final_price"]),
         "photo": price_data["item"]["photo"],
         "name": price_data["item"]["name"],
-        "price_card": int(str(oz_card_price)[:-1])
+        "price_card": int((oz_card_price[:-1]).replace("\u2009", ""))
     }
     return data
