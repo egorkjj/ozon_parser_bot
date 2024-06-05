@@ -1,14 +1,7 @@
-from environs import Env
 from sqlalchemy import create_engine, Column, Integer, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-env = Env()
-env.read_env(".env")
-user = env.str("DB_USER")
-passw = env.str("DB_PASSWORD")
-host = env.str("DB_HOST")
-name = env.str("DB_NAME")
 
 
 DATABASE_URL = f"sqlite:///db.sqlite3"

@@ -3,13 +3,9 @@ from aiogram import Bot
 from tg_bot.DBSM import fetchall, change_price
 from tg_bot.parsers import ozon_parse
 import asyncio
-env = Env()
-env.read_env(".env")
-token = env.str("BOT_TOKEN")
-print(token)
 
 async def main():
-    bot = Bot(token = token)
+    bot = Bot(token = '7408587903:AAFVqWjgUUV9uScN3SsZHQGcBmIpwKPzNvE')
     while True:
         data = fetchall()
         for i in data:
