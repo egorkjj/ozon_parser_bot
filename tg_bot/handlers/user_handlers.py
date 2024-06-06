@@ -34,17 +34,20 @@ async def add_article_proc(message: types.Message, state: FSMContext):
     if result == False:
         await message.answer("Упс, такого артикула не существует... Введите, пожалуйста, заново или отмените добавление", reply_markup= otmena())
         return
-    else:
+    else:    
+        await state.finish()
         add(message.text, message.chat.id, int(result['price']), int(result['price_card']))
         text = f"<b>Цена по Ozon карте:</b> {result['price_card']}₽\n<b>Цена без Ozon карты:</b>{result['price']}₽\n\n<b><i>Отслеживание цены товара включено(Вы будете получать уведомления, когда цена изменится)</i></b>"
         url = result["photo"]
+        if url == False:
+            await message.answer(text=text)
+            return
         img_data = requests.get(url).content
         with open('image.jpg', 'wb') as handler:
             handler.write(img_data)
         with open('image.jpg', 'rb') as handler:
             await message.answer_photo(photo=handler, caption=text)
         
-    await state.finish()
         
 
 async def refuse(call: types.CallbackQuery, state: FSMContext):

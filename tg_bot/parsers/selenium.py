@@ -18,8 +18,11 @@ def run_selenium(article):
         par = el1.find_element(By.XPATH, "..")
         previous_sibling1 = par.find_element(By.XPATH, "preceding-sibling::*[1]")
         curr1 = previous_sibling1.find_element(By.CSS_SELECTOR, "*")
-        image = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[4]/div[3]/div[1]/div[1]/div[1]/div/div/div/div/div/div[2]/div[1]/div/img")
-        src = image.get_attribute("src")
+        try:
+            image = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[4]/div[3]/div[1]/div[1]/div[1]/div/div/div/div/div/div[2]/div[1]/div/img")
+            src = image.get_attribute("src")
+        except:
+            src = False
         txt1 = curr1.text
         driver.quit()
         return [txt, txt1, src]
