@@ -23,5 +23,5 @@ async def main():
             if data_w["price"] != price or data_w["price_card"] != oz_price:
                 change_price(data_w["price_card"], data_w["price"], article, chat_id)
                 await bot.send_message(chat_id = int(chat_id), text= f"Цена на товар по артикулу {article} изменилась!\nТекущая цена: {data_w['price']}₽\nТекущая цена по Ozon карте: {data_w['price_card']}₽")
-
+            time.sleep(120)
 asyncio.run(main())
