@@ -3,6 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from tg_bot.handlers import register_handlers
+from tg_bot.parsers import run_selenium
 storage = MemoryStorage()
 logger = logging.getLogger(__name__)
 
@@ -16,7 +17,7 @@ async def main() -> None:
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
     )
     logger.info("Starting bot")
-    bot = Bot(token='7408587903:AAFVqWjgUUV9uScN3SsZHQGcBmIpwKPzNvE', parse_mode = 'HTML')
+    bot = Bot(token='7421677549:AAGHL5x8EWp3QhWQI1CdKVF1U2cOaDmxPRQ', parse_mode = 'HTML')
     dp = Dispatcher(bot, storage=storage) 
     register_all_handlers(dp)
     try:

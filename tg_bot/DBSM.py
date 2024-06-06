@@ -17,15 +17,14 @@ class Articles(Base):
     __tablename__ = 'articles'
     id = Column(Integer, autoincrement=True, primary_key=True)
     article = Column(Integer, nullable=False)
-    photo = Column(Text, nullable=True)
     user_id = Column(Integer, nullable=True)
     card_price = Column(Integer, nullable=True)
     price = Column(Integer, nullable=True)
 
-def add(art, img, user, price_w, oz_price):
+def add(art, user, price_w, oz_price):
     Session = sessionmaker()
     session = Session(bind=engine) 
-    new = Articles(article = art, photo = img, user_id = user, price = price_w, card_price = oz_price)
+    new = Articles(article = art, user_id = user, price = price_w, card_price = oz_price)
     session.add(new)
     session.commit()
     session.close()

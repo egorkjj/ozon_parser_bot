@@ -35,8 +35,8 @@ async def add_article_proc(message: types.Message, state: FSMContext):
         await message.answer("Упс, такого артикула не существует... Введите, пожалуйста, заново или отмените добавление", reply_markup= otmena())
         return
     else:
-        add(message.text, result["photo"], message.chat.id, int(result['price']), int(result['price_card']))
-        text = f"<b>Название товара:</b> {result['name']}\n<b>Цена по Ozon карте:</b> {result['price_card']}₽\n<b>Цена без Ozon карты:</b>{result['price']}₽\n\n<b><i>Отслеживание цены товара включено(Вы будете получать уведомления, когда цена изменится)</i></b>"
+        add(message.text, message.chat.id, int(result['price']), int(result['price_card']))
+        text = f"<b>Цена по Ozon карте:</b> {result['price_card']}₽\n<b>Цена без Ozon карты:</b>{result['price']}₽\n\n<b><i>Отслеживание цены товара включено(Вы будете получать уведомления, когда цена изменится)</i></b>"
         url = result["photo"]
         img_data = requests.get(url).content
         with open('image.jpg', 'wb') as handler:
