@@ -17,8 +17,10 @@ async def main():
                 oz_price = 0
             else:
                 oz_price = int(i.card_price)
-            
-            price = int(i.price)
+            if i.price == None or i.price == 'None':
+                price = 0
+            else:
+                price = int(i.price)
             article = i.article
             while True:
                 try:
