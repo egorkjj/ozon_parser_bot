@@ -13,7 +13,11 @@ async def main():
         for i in data:
             print('flag3')
             chat_id = i.user_id
-            oz_price = int(i.card_price)
+            if oz_price == None:
+                oz_price = 0
+            else:
+                oz_price = int(i.card_price)
+            
             price = int(i.price)
             article = i.article
             while True:
@@ -22,6 +26,8 @@ async def main():
                     break
                 except:
                     pass
+            if data_w['price_card'] == None:
+                continue
             if data_w["photo"] == "None":
                 continue
             if data_w["price"] != price or data_w["price_card"] != oz_price:
