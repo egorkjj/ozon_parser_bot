@@ -10,12 +10,10 @@ async def main():
     while True:
         print('flag2')
         data = fetchall()
-        # if data =
         for i in data:
             print('flag3')
             chat_id = i.user_id
-            if i.card_price == None:
-                oz_price = int(i.card_price)
+            oz_price = int(i.card_price)
             price = int(i.price)
             article = i.article
             while True:
@@ -24,10 +22,11 @@ async def main():
                     break
                 except:
                     pass
+            if data_w["photo"] == "None":
+                continue
             if data_w["price"] != price or data_w["price_card"] != oz_price:
                 change_price(data_w["price_card"], data_w["price"], article, chat_id)
                 await bot.send_message(chat_id = int(chat_id), text= f"Цена на товар по артикулу {article} изменилась!\nТекущая цена: {data_w['price']}₽\nТекущая цена по Ozon карте: {data_w['price_card']}₽")
             time.sleep(20)
-            # asyncio.sleep(20)
         time.sleep(120)
 asyncio.run(main())
