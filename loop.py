@@ -10,9 +10,12 @@ async def main():
     while True:
         print('flag2')
         data = fetchall()
+        # if data =
         for i in data:
+            print('flag3')
             chat_id = i.user_id
-            oz_price = int(i.card_price)
+            if i.card_price == None:
+                oz_price = int(i.card_price)
             price = int(i.price)
             article = i.article
             while True:
