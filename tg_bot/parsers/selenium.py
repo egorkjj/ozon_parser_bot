@@ -10,6 +10,9 @@ def run_selenium(article):
         driver.get(f'https://ozon.ru/context/detail/id/{article}/')
         try:
             while f"https://ozon.ru/context/detail/id/{article}/" in driver.current_url:
+                if driver.title.lower() == "доступ ограничен":
+                    driver.quit()
+                    return ["None", "None", "None"]
                 continue
             el = driver.find_element(By.XPATH, "//*[contains(text(), 'c Ozon Картой')]")
             previous_sibling = el.find_element(By.XPATH, "preceding-sibling::*[1]")
