@@ -1,4 +1,3 @@
-from environs import Env
 from aiogram import Bot
 from tg_bot.DBSM import fetchall, change_price
 from tg_bot.parsers import ozon_parse
