@@ -35,7 +35,7 @@ async def add_article_proc(message: types.Message, state: FSMContext):
     result = ozon_parse(message.text)
     await mess.delete()
     if result["photo"] == "None":
-        await message.answer("Упс, такого артикула не существует... Введите, пожалуйста, заново или отмените добавление", reply_markup= otmena())
+        await message.answer("Упс, такого артикула не существует или не удалось получить данные о нем... Введите, пожалуйста, заново или отмените добавление", reply_markup= otmena())
         return
     else:    
         await state.finish()
