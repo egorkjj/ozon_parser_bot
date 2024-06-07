@@ -13,7 +13,7 @@ async def main():
         for i in data:
             print('flag3')
             chat_id = i.user_id
-            if i.card_price == None:
+            if i.card_price == None or i.card_price == 'None':
                 oz_price = 0
             else:
                 oz_price = int(i.card_price)
