@@ -54,5 +54,22 @@ def change_price(price_card, price, art, user_id):
     session.commit()
     session.close()
 
+def my_articles(user):
+    res = []
+    Session = sessionmaker()
+    session = Session(bind=engine)
+    all = session.query(Articles).filter(Articles.user_id == user).all()
+    session.close()
+    for i in all:
+        res.append(i.article)
+    return res
+
+def del_art(article, user):
+    Session = sessionmaker()
+    session = Session(bind=engine)
+    session.query(Articles).filter(Articles.user_id == user, Articles.article == article).delete()
+    session.commit()
+    session.close()
+    
 
 Base.metadata.create_all(engine)
