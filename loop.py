@@ -4,9 +4,11 @@ from tg_bot.parsers import ozon_parse
 import asyncio
 import time
 
-async def main():
+async def main():  
+    print('flag1')
     bot = Bot(token = '7421677549:AAGHL5x8EWp3QhWQI1CdKVF1U2cOaDmxPRQ')
     while True:
+        print('flag2')
         data = fetchall()
         for i in data:
             chat_id = i.user_id
@@ -22,5 +24,7 @@ async def main():
             if data_w["price"] != price or data_w["price_card"] != oz_price:
                 change_price(data_w["price_card"], data_w["price"], article, chat_id)
                 await bot.send_message(chat_id = int(chat_id), text= f"Цена на товар по артикулу {article} изменилась!\nТекущая цена: {data_w['price']}₽\nТекущая цена по Ozon карте: {data_w['price_card']}₽")
-            time.sleep(120)
+            time.sleep(20)
+            # asyncio.sleep(20)
+        time.sleep(120)
 asyncio.run(main())
