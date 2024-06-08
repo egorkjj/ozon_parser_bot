@@ -20,11 +20,12 @@ class Articles(Base):
     user_id = Column(Integer, nullable=True)
     card_price = Column(Integer, nullable=True)
     price = Column(Integer, nullable=True)
-
-def add(art, user, price_w, oz_price):
+    photo = Column(Text, nullable=True)
+    
+def add(art, user, price_w, oz_price, photo):
     Session = sessionmaker()
     session = Session(bind=engine) 
-    new = Articles(article = art, user_id = user, price = price_w, card_price = oz_price)
+    new = Articles(article = art, user_id = user, price = price_w, card_price = oz_price, photo = photo)
     session.add(new)
     session.commit()
     session.close()

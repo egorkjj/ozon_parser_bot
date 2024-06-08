@@ -3,7 +3,6 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from tg_bot.handlers import register_handlers
-from tg_bot.parsers import run_selenium
 storage = MemoryStorage()
 logger = logging.getLogger(__name__)
 

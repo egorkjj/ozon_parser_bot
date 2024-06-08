@@ -1,7 +1,6 @@
 from aiogram import Dispatcher
 from tg_bot.parsers import ozon_parse
 from aiogram import types
-from aiogram.types import InputFile
 from aiogram.dispatcher import FSMContext
 from tg_bot.states import admin
 from tg_bot.DBSM import add, check, my_articles, del_art
@@ -31,18 +30,19 @@ async def add_article_proc(message: types.Message, state: FSMContext):
         await message.answer("Вы уже получаете уведомления о изменениях цены этого товара")
         await state.finish()
         return
+    
     mess = await message.answer("Собираю информацию о товаре...")
     result = ozon_parse(message.text)
     await mess.delete()
-    if result["photo"] == "None":
+    if result == False:
         await message.answer("Упс, такого артикула не существует или не удалось получить данные о нем... Введите, пожалуйста, заново или отмените добавление", reply_markup= otmena())
         return
     else:    
         await state.finish()
-        add(message.text, message.chat.id, int(result['price']), int(result['price_card']))
+        add(message.text, message.chat.id, result['price'], result['price_card'], result["photo"])
         text = f"<b>Цена по Ozon карте:</b> {result['price_card']}₽\n<b>Цена без Ozon карты:</b>{result['price']}₽\n\n<b><i>Отслеживание цены товара включено(Вы будете получать уведомления, когда цена изменится)</i></b>"
         url = result["photo"]
-        if url == False:
+        if url == None:
             await message.answer(text=text)
             return
         img_data = requests.get(url).content
